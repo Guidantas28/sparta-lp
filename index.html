@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SPARTA — Rodada Privada de Expansão | A 1ª MegaGym do Brasil</title>
+<meta name="description" content="Sparta não está construindo academias. Está construindo uma marca. Participe da rodada privada para finalizar a unidade Sparta Gleba — modelo já validado e faturando." />
+<meta property="og:title" content="SPARTA — Rodada Privada de Expansão" />
+<meta property="og:description" content="A disciplina encontra o impossível. Entre na rodada privada da 1ª MegaGym do Brasil." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/png" href="assets/sparta-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;800;900&family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --black:#0a0a0a;--ink:#070707;--panel:#111110;--panel-2:#161613;
+    --yellow:#ffe000;--yellow-deep:#f5c400;--white:#f4f3ee;--muted:#9d9c93;
+    --line:rgba(255,224,0,.16);--line-soft:rgba(255,255,255,.08);--maxw:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:74px}
+  body{background:var(--black);color:var(--white);font-family:'Exo',system-ui,sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--yellow);color:#000}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  /* custom scrollbar */
+  ::-webkit-scrollbar{width:11px}
+  ::-webkit-scrollbar-track{background:#070707}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(var(--yellow-deep),#8a7000);border:2px solid #070707}
+  ::-webkit-scrollbar-thumb:hover{background:var(--yellow)}
+
+  h1,h2,h3,.display{font-family:'League Spartan',sans-serif;font-weight:900;line-height:.92;letter-spacing:-.01em;text-transform:uppercase}
+  .eyebrow{font-family:'League Spartan',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.32em;font-size:.72rem;color:var(--yellow);display:inline-flex;align-items:center;gap:12px}
+  .eyebrow::before{content:"";width:34px;height:2px;background:var(--yellow)}
+  .yellow{color:var(--yellow)}
+
+  /* ---------- FILM GRAIN + VIGNETTE + GLOW ---------- */
+  .grain{position:fixed;inset:-200%;z-index:9000;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:grain 7s steps(6) infinite}
+  @keyframes grain{0%{transform:translate(0,0)}10%{transform:translate(-4%,-4%)}30%{transform:translate(3%,-2%)}50%{transform:translate(-2%,3%)}70%{transform:translate(4%,2%)}90%{transform:translate(-3%,1%)}100%{transform:translate(0,0)}}
+  .vignette{position:fixed;inset:0;z-index:8999;pointer-events:none;box-shadow:inset 0 0 220px 60px rgba(0,0,0,.85)}
+  .cursor-glow{position:fixed;width:520px;height:520px;border-radius:50%;z-index:1;pointer-events:none;left:0;top:0;transform:translate(-50%,-50%);
+    background:radial-gradient(circle,rgba(255,224,0,.10),transparent 60%);transition:opacity .4s;opacity:0;will-change:transform}
+  /* reading progress */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:9100;background:linear-gradient(90deg,var(--yellow-deep),var(--yellow));box-shadow:0 0 12px rgba(255,224,0,.6)}
+
+  /* ---------- LOADER ---------- */
+  .loader{position:fixed;inset:0;z-index:10000;background:#070707;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;transition:opacity .7s ease,visibility .7s}
+  .loader.done{opacity:0;visibility:hidden}
+  .loader-mark{height:46px;opacity:0;transform:translateY(14px);animation:loadmark .8s .15s forwards cubic-bezier(.2,.7,.2,1)}
+  @keyframes loadmark{to{opacity:1;transform:none}}
+  .loader-bar{width:200px;height:3px;background:rgba(255,255,255,.1);overflow:hidden}
+  .loader-bar i{display:block;height:100%;width:0;background:var(--yellow);animation:loadbar 1.15s .2s forwards cubic-bezier(.6,.1,.2,1)}
+  @keyframes loadbar{to{width:100%}}
+  .loader-tag{font-family:'League Spartan',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.4em;font-size:.66rem;color:var(--muted);opacity:0;animation:loadmark .6s .5s forwards}
+
+  /* ---------- NAV ---------- */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:5000;display:flex;align-items:center;justify-content:space-between;padding:16px 28px;background:rgba(10,10,10,0);transition:background .35s,padding .35s,border-color .35s;border-bottom:1px solid transparent}
+  header.nav.scrolled{background:rgba(8,8,8,.86);backdrop-filter:blur(16px) saturate(1.2);padding:11px 28px;border-bottom:1px solid var(--line)}
+  header.nav .logo{height:30px;width:auto}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-family:'League Spartan',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;color:var(--muted);transition:color .2s;position:relative}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--yellow);transition:width .25s}
+  .nav-links a:hover{color:var(--white)}.nav-links a:hover::after{width:100%}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:'League Spartan',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;padding:13px 24px;cursor:pointer;border:none;transition:transform .12s,box-shadow .2s,background .2s,color .2s;clip-path:polygon(0 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%);will-change:transform}
+  .btn-primary{background:var(--yellow);color:#000}
+  .btn-primary:hover{box-shadow:0 12px 40px rgba(255,224,0,.4)}
+  .btn-ghost{background:transparent;color:var(--white);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--yellow);color:var(--yellow)}
+  .nav .btn{padding:11px 20px;font-size:.76rem}
+  @media(max-width:880px){.nav-links{display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:150px 0 80px;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.6) 0%,rgba(10,10,10,.85) 55%,var(--black) 100%),url('assets/deck-hero-01.png') center/cover no-repeat;transform:scale(1.08);animation:kenburns 22s ease-in-out infinite alternate;will-change:transform}
+  @keyframes kenburns{0%{transform:scale(1.08) translate(0,0)}100%{transform:scale(1.16) translate(-2%,-2%)}}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 80% 0%,rgba(255,224,0,.12),transparent 60%);mix-blend-mode:screen}
+  .hero-stripes{position:absolute;top:0;right:0;width:42%;height:100%;background:repeating-linear-gradient(115deg,transparent 0 38px,rgba(255,224,0,.05) 38px 40px);pointer-events:none}
+  .hero .wrap{position:relative;z-index:2}
+  .hero-flag{display:inline-flex;align-items:center;gap:10px;margin-bottom:26px;background:rgba(255,224,0,.1);border:1px solid var(--line);padding:8px 16px;font-family:'League Spartan',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;color:var(--yellow)}
+  .pulse{width:9px;height:9px;border-radius:50%;background:var(--yellow);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,224,0,.6)}70%{box-shadow:0 0 0 12px rgba(255,224,0,0)}100%{box-shadow:0 0 0 0 rgba(255,224,0,0)}}
+  .hero h1{font-size:clamp(2.9rem,8.2vw,6.6rem);margin-bottom:8px}
+  /* word reveal */
+  .word{display:inline-block;overflow:hidden;vertical-align:top}
+  .word > span{display:inline-block;transform:translateY(105%);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+  .loaded .word > span{transform:none}
+  .hero h1 .word:nth-child(1) span{transition-delay:.05s}.hero h1 .word:nth-child(2) span{transition-delay:.11s}
+  .hero h1 .word:nth-child(3) span{transition-delay:.17s}.hero h1 .word:nth-child(4) span{transition-delay:.23s}
+  .hero h1 .word:nth-child(5) span{transition-delay:.29s}.hero h1 .word:nth-child(6) span{transition-delay:.35s}
+  .hero h1 .out{-webkit-text-stroke:2px var(--yellow);color:transparent}
+  .shimmer{background:linear-gradient(100deg,var(--yellow) 30%,#fff7c2 50%,var(--yellow) 70%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 4.5s linear infinite}
+  @keyframes shimmer{to{background-position:-200% 0}}
+  .uline{position:relative}
+  .uline::after{content:"";position:absolute;left:0;bottom:-2px;height:5px;width:0;background:var(--yellow);transition:width .7s .9s cubic-bezier(.2,.8,.2,1)}
+  .loaded .uline::after{width:100%}
+  .hero-sub{font-size:clamp(1.05rem,1.7vw,1.35rem);color:var(--white);max-width:640px;margin:26px 0 14px;font-weight:400}
+  .hero-sub b{color:var(--yellow);font-weight:700}
+  .hero-micro{color:var(--muted);font-size:.98rem;max-width:580px;margin-bottom:34px}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .hero-note{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:.82rem;margin-top:22px}.hero-note svg{flex:none}
+  .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;color:var(--muted);font-family:'League Spartan',sans-serif;font-weight:700;letter-spacing:.2em;font-size:.62rem;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.7}
+  .scroll-hint i{display:block;width:1px;height:30px;background:linear-gradient(var(--yellow),transparent);animation:scrolld 1.8s infinite}
+  @keyframes scrolld{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.1%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ---------- TICKET QUALIFIER ---------- */
+  .ticket-q{display:inline-flex;flex-direction:column;gap:0}
+  .tq-bands{display:flex;gap:10px;flex-wrap:wrap;max-height:0;overflow:hidden;opacity:0;transform:translateY(-6px);transition:max-height .45s ease,opacity .35s,transform .35s,margin .35s}
+  .ticket-q.open .tq-bands{max-height:140px;opacity:1;transform:none;margin-top:14px}
+  .tq-band{font-family:'League Spartan',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:.82rem;padding:12px 18px;cursor:pointer;background:rgba(255,224,0,.08);border:1.5px solid var(--line);color:var(--yellow);transition:.2s;clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%)}
+  .tq-band:hover{background:var(--yellow);color:#000;transform:translateY(-2px)}
+  .tq-hint{font-size:.74rem;color:var(--muted);margin-top:10px;letter-spacing:.02em}
+
+  /* ---------- STAT BAR ---------- */
+  .statbar{position:relative;z-index:3;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(90deg,rgba(255,224,0,.05),transparent)}
+  .statbar .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .stat{padding:34px 26px;border-right:1px solid var(--line-soft)}
+  .stat:last-child{border-right:none}
+  .stat .num{font-family:'League Spartan',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,3.1rem);color:var(--yellow);line-height:1}
+  .stat .lab{font-size:.82rem;color:var(--muted);margin-top:8px;text-transform:uppercase;letter-spacing:.06em}
+  @media(max-width:760px){.statbar .wrap{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:none}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line-soft)}}
+
+  /* ---------- SECTIONS ---------- */
+  section{position:relative}
+  .sec{padding:110px 0}
+  .sec-head{max-width:760px;margin-bottom:58px}
+  .sec-head h2{font-size:clamp(2rem,4.6vw,3.5rem);margin:18px 0 0}
+  .sec-head p{color:var(--muted);font-size:1.08rem;margin-top:20px;max-width:660px}
+  .lead{font-size:1.15rem;color:var(--white)}
+
+  .thesis{background:linear-gradient(180deg,var(--black),#0d0d0c)}
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  @media(max-width:820px){.cols2{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line-soft);padding:34px;clip-path:polygon(0 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%);transition:transform .3s,border-color .3s}
+  .card.bad{border-left:3px solid #5a5a55}
+  .card.good{border-left:3px solid var(--yellow);background:linear-gradient(180deg,#15140e,#111110)}
+  .card h3{font-size:1.45rem;margin-bottom:18px;letter-spacing:0}
+  .card.bad h3{color:var(--muted)}.card.good h3{color:var(--yellow)}
+  .card ul{list-style:none}
+  .card li{padding:9px 0 9px 30px;position:relative;color:#cfcec5;font-size:1rem;border-bottom:1px dashed rgba(255,255,255,.06)}
+  .card li:last-child{border-bottom:none}
+  .card.bad li::before{content:"✕";position:absolute;left:0;color:#6b6b64;font-weight:700}
+  .card.good li::before{content:"✓";position:absolute;left:0;color:var(--yellow);font-weight:800}
+
+  /* icons */
+  .svg-ico{width:30px;height:30px;stroke:var(--yellow);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .35s}
+  .svg-ico-sm{width:22px;height:22px;stroke:var(--yellow);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+  /* ecosystem */
+  .eco-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:820px){.eco-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.eco-grid{grid-template-columns:1fr}}
+  .eco{background:var(--panel);border:1px solid var(--line-soft);padding:30px 26px;clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%);position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s}
+  .eco::before{content:"";position:absolute;top:0;left:0;width:0;height:3px;background:var(--yellow);transition:width .35s}
+  .eco:hover::before{width:100%}
+  .eco:hover{border-color:var(--yellow);box-shadow:0 18px 50px rgba(0,0,0,.5)}
+  .eco:hover .svg-ico{transform:scale(1.12) rotate(-4deg)}
+  .eco .ico{margin-bottom:14px}
+  .eco h3{font-size:1.15rem;letter-spacing:0;margin-bottom:8px}
+  .eco p{color:var(--muted);font-size:.93rem}
+
+  /* split feature */
+  .split{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+  @media(max-width:900px){.split{grid-template-columns:1fr;gap:38px}}
+  .feat-list{list-style:none;margin-top:30px}
+  .feat-list li{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line-soft);align-items:flex-start}
+  .feat-list .ic{flex:none;width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--line);clip-path:polygon(0 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%);background:rgba(255,224,0,.05)}
+  .feat-list .t b{display:block;font-family:'League Spartan',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:1rem;margin-bottom:3px}
+  .feat-list .t span{color:var(--muted);font-size:.95rem}
+  .visual-card{border:1px solid var(--line);padding:38px;background:linear-gradient(160deg,#15140d,#0c0c0b);clip-path:polygon(0 0,100% 0,100% calc(100% - 26px),calc(100% - 26px) 100%,0 100%)}
+  .visual-card .big{font-family:'League Spartan',sans-serif;font-weight:900;font-size:clamp(3rem,7vw,5rem);color:var(--yellow);line-height:.9}
+  .visual-card .big small{display:block;font-size:1rem;color:var(--white);letter-spacing:.1em;margin-top:14px;font-weight:600}
+  .badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .badge{font-family:'League Spartan',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.72rem;border:1px solid var(--line);color:var(--yellow);padding:7px 13px}
+
+  /* parallax divider */
+  .pdiv{position:relative;height:340px;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pdiv .pbg{position:absolute;inset:-20% 0;background-size:cover;background-position:center;will-change:transform}
+  .pdiv::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.92),rgba(10,10,10,.55) 60%,rgba(10,10,10,.85))}
+  .pdiv .pcap{position:absolute;z-index:2;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;padding:0 28px}
+  .pdiv .pcap h3{font-size:clamp(1.6rem,4vw,2.8rem)}
+  .pdiv .pcap p{color:var(--muted);margin-top:10px;letter-spacing:.04em}
+
+  /* gleba spotlight */
+  .spot{background:linear-gradient(180deg,#0d0d0c,var(--black))}
+  .spot-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center}
+  @media(max-width:900px){.spot-grid{grid-template-columns:1fr;gap:30px}}
+  .spot-img{position:relative;border:1px solid var(--line);overflow:hidden;clip-path:polygon(0 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%);min-height:340px;background:#111 center/cover}
+  .spot-img .tagpin{position:absolute;top:18px;left:18px;background:var(--yellow);color:#000;font-family:'League Spartan',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:.72rem;padding:7px 12px}
+  .progress-wrap{margin-top:26px}
+  .progress-wrap .pl{display:flex;justify-content:space-between;font-family:'League Spartan',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.82rem;margin-bottom:10px}
+  .progress-wrap .pl span:last-child{color:var(--yellow)}
+  .pbar{height:12px;background:rgba(255,255,255,.08);overflow:hidden;clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+  .pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--yellow-deep),var(--yellow));transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+  .spot-list{list-style:none;margin-top:24px}
+  .spot-list li{display:flex;gap:12px;align-items:center;padding:10px 0;color:#cfcec5;font-size:.98rem}
+
+  /* traction */
+  .traction{background:#0d0d0c}
+  .units{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:10px}
+  @media(max-width:820px){.units{grid-template-columns:repeat(2,1fr)}}
+  .unit{border:1px solid var(--line-soft);padding:26px 22px;background:var(--panel);transition:transform .3s,border-color .3s}
+  .unit .st{font-family:'League Spartan',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;display:inline-block;margin-bottom:14px}
+  .st.live{background:var(--yellow);color:#000}
+  .st.soon{background:rgba(255,224,0,.14);color:var(--yellow);border:1px solid var(--line)}
+  .st.plan{background:rgba(255,255,255,.06);color:var(--muted)}
+  .unit h3{font-size:1.3rem;letter-spacing:0}
+  .unit p{color:var(--muted);font-size:.9rem;margin-top:6px}
+  .unit.focus{border-color:var(--yellow);box-shadow:0 0 0 1px var(--line),0 20px 50px rgba(0,0,0,.4)}
+
+  /* numbers */
+  .numbers{background:linear-gradient(180deg,#0d0d0c,var(--black))}
+  .num-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:820px){.num-grid{grid-template-columns:1fr}}
+  .nbox{border:1px solid var(--line-soft);padding:38px 32px;background:var(--panel)}
+  .nbox.hl{background:linear-gradient(165deg,#1a1809,#0f0f0d);border:1px solid var(--line)}
+  .nbox .v{font-family:'League Spartan',sans-serif;font-weight:900;font-size:clamp(2.4rem,5vw,3.6rem);color:var(--yellow);line-height:1}
+  .nbox .l{color:#cfcec5;margin-top:12px;font-size:1rem}
+  .nbox .s{color:var(--muted);font-size:.85rem;margin-top:6px}
+
+  /* invest */
+  .invest{background:#0c0c0b}
+  .deal{display:grid;grid-template-columns:1.1fr .9fr;border:1px solid var(--line);clip-path:polygon(0 0,100% 0,100% calc(100% - 28px),calc(100% - 28px) 100%,0 100%);overflow:hidden}
+  @media(max-width:900px){.deal{grid-template-columns:1fr}}
+  .deal-left{padding:48px;background:linear-gradient(160deg,#16150e,#0d0d0c)}
+  .deal-right{padding:48px;background:var(--yellow);color:#000;display:flex;flex-direction:column;justify-content:center}
+  .deal-left h3{font-size:1.8rem;margin-bottom:8px}
+  .terms{list-style:none;margin-top:26px}
+  .terms li{display:flex;justify-content:space-between;gap:14px;padding:15px 0;border-bottom:1px solid var(--line-soft)}
+  .terms li span:first-child{color:var(--muted)}
+  .terms li span:last-child{font-family:'League Spartan',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.03em;text-align:right;color:var(--white)}
+  .terms li span.fill{color:var(--yellow)}
+  .deal-right .eyebrow{color:#000}.deal-right .eyebrow::before{background:#000}
+  .deal-right h3{font-size:2rem;color:#000;margin:14px 0 10px}
+  .deal-right p{color:#1a1a1a;font-weight:500;margin-bottom:24px}
+  .deal-right .ticket-q .tq-band{background:rgba(0,0,0,.08);border-color:rgba(0,0,0,.3);color:#000}
+  .deal-right .ticket-q .tq-band:hover{background:#000;color:var(--yellow)}
+  .deal-right .tq-trigger{background:#000;color:var(--yellow);align-self:flex-start}
+  .deal-right .tq-trigger:hover{box-shadow:0 12px 30px rgba(0,0,0,.4)}
+  .deal-right .tq-hint{color:#3a3a30}
+
+  /* soul */
+  .soul{background:var(--black);position:relative;overflow:hidden}
+  .soul .ghost{position:absolute;right:-4%;top:50%;transform:translateY(-50%);font-family:'League Spartan',sans-serif;font-weight:900;font-size:30vw;color:rgba(255,255,255,.018);pointer-events:none;letter-spacing:-.04em}
+  .vals{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:14px}
+  @media(max-width:820px){.vals{grid-template-columns:1fr}}
+  .val{background:var(--black);padding:30px 26px;transition:background .3s}
+  .val:hover{background:var(--panel)}
+  .val .n{font-family:'League Spartan',sans-serif;font-weight:900;color:var(--yellow);font-size:1rem;letter-spacing:.1em}
+  .val h3{font-size:1.15rem;letter-spacing:0;margin:10px 0 8px}
+  .val p{color:var(--muted);font-size:.92rem}
+
+  /* proof marquee */
+  .proof{padding:0;background:#070707;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);overflow:hidden}
+  .proof-track{display:flex;gap:18px;padding:26px 0;width:max-content;animation:marq 38s linear infinite}
+  .proof:hover .proof-track{animation-play-state:paused}
+  .proof-track img{height:200px;width:auto;border:1px solid var(--line-soft);filter:grayscale(.3) contrast(1.05);transition:filter .3s}
+  .proof-track img:hover{filter:none}
+  @keyframes marq{to{transform:translateX(-50%)}}
+
+  /* quote */
+  .quote{padding:120px 0;background:linear-gradient(180deg,var(--black),#0d0d0c);text-align:center}
+  .quote blockquote{font-family:'League Spartan',sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(1.8rem,4.6vw,3.4rem);line-height:1.02;max-width:980px;margin:0 auto;letter-spacing:-.01em}
+  .quote cite{display:block;margin-top:30px;color:var(--muted);font-style:normal;letter-spacing:.2em;text-transform:uppercase;font-size:.8rem;font-family:'League Spartan',sans-serif;font-weight:700}
+
+  /* faq */
+  .faq-item{border-bottom:1px solid var(--line-soft)}
+  .faq-q{width:100%;text-align:left;background:none;border:none;color:var(--white);font-family:'League Spartan',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(1.05rem,2vw,1.3rem);padding:26px 50px 26px 0;cursor:pointer;position:relative}
+  .faq-q::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);color:var(--yellow);font-size:1.7rem;font-weight:400;transition:transform .3s}
+  .faq-item.open .faq-q::after{transform:translateY(-50%) rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .faq-a p{color:var(--muted);padding:0 40px 26px 0;font-size:1rem;line-height:1.7}
+
+  /* final */
+  .final{position:relative;padding:130px 0;text-align:center;overflow:hidden;background:radial-gradient(80% 130% at 50% 0%,rgba(255,224,0,.14),transparent 60%),#0a0a0a;border-top:1px solid var(--line)}
+  .final h2{font-size:clamp(2.4rem,6.5vw,5rem);margin-bottom:22px}
+  .final p{color:var(--muted);max-width:560px;margin:0 auto 36px;font-size:1.1rem}
+  .final .ticket-q{align-items:center}
+
+  /* footer */
+  footer{background:#070707;border-top:1px solid var(--line-soft);padding:60px 0 40px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:46px}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:30px}}
+  footer .logo{height:30px;margin-bottom:20px}
+  footer p{color:var(--muted);font-size:.92rem;max-width:340px}
+  .foot-col h4{font-family:'League Spartan',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--yellow);margin-bottom:16px}
+  .foot-col a{display:block;color:var(--muted);font-size:.92rem;padding:6px 0;transition:color .2s}
+  .foot-col a:hover{color:var(--white)}
+  .foot-bottom{border-top:1px solid var(--line-soft);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .foot-bottom p{font-size:.82rem;color:#6a6a63}
+  .disclaim{font-size:.74rem;color:#55554f;max-width:880px;margin-top:18px;line-height:1.6}
+
+  /* sticky / float cta */
+  .float-cta{position:fixed;right:24px;bottom:24px;z-index:4000;display:inline-flex;opacity:0;transform:translateY(20px) scale(.9);transition:opacity .4s,transform .4s;box-shadow:0 14px 40px rgba(0,0,0,.5)}
+  .float-cta.show{opacity:1;transform:none;animation:floatpulse 2.6s ease-in-out infinite}
+  @keyframes floatpulse{0%,100%{box-shadow:0 14px 40px rgba(0,0,0,.5),0 0 0 0 rgba(255,224,0,.4)}50%{box-shadow:0 14px 40px rgba(0,0,0,.5),0 0 0 14px rgba(255,224,0,0)}}
+  @media(max-width:880px){.float-cta{display:none}}
+  .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:4000;display:none;padding:12px 16px;background:rgba(8,8,8,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+  .sticky-cta .btn{width:100%;justify-content:center}
+  @media(max-width:880px){.sticky-cta{display:block}body{padding-bottom:64px}}
+
+  /* exit modal */
+  .exit-overlay{position:fixed;inset:0;z-index:9500;background:rgba(4,4,4,.82);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+  .exit-overlay.show{opacity:1;visibility:visible}
+  .exit-modal{max-width:520px;width:100%;background:linear-gradient(160deg,#16150e,#0c0c0b);border:1px solid var(--yellow);padding:46px;position:relative;clip-path:polygon(0 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%);transform:translateY(20px) scale(.97);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+  .exit-overlay.show .exit-modal{transform:none}
+  .exit-modal .x{position:absolute;top:14px;right:18px;background:none;border:none;color:var(--muted);font-size:1.6rem;cursor:pointer;line-height:1}
+  .exit-modal .eyebrow{margin-bottom:14px}
+  .exit-modal h3{font-size:1.9rem;margin-bottom:14px}
+  .exit-modal p{color:var(--muted);margin-bottom:26px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(28px);filter:blur(6px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1),filter .7s}
+  .reveal.in{opacity:1;transform:none;filter:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;filter:none!important}.hero-bg,.grain,.float-cta.show{animation:none!important}.word>span{transform:none!important}}
+
+  /* scroll snap (gentle, proximity) */
+  @media(min-width:881px) and (prefers-reduced-motion:no-preference){
+    html.snap{scroll-snap-type:y proximity}
+    .snap-sec{scroll-snap-align:start}
+  }
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <img src="assets/sparta-icon.png" alt="" class="loader-mark" style="height:64px" />
+  <img src="assets/sparta-wordmark.png" alt="Sparta" class="loader-mark" />
+  <div class="loader-bar"><i></i></div>
+  <div class="loader-tag">A disciplina encontra o impossível</div>
+</div>
+
+<!-- ATMOSPHERE -->
+<div class="grain"></div>
+<div class="vignette"></div>
+<div class="cursor-glow" id="glow"></div>
+<div class="progress" id="progress"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#top"><img src="assets/sparta-wordmark.png" alt="Sparta" class="logo" /></a>
+  <nav class="nav-links">
+    <a href="#tese">A Tese</a>
+    <a href="#ecossistema">Ecossistema</a>
+    <a href="#gleba">A Gleba</a>
+    <a href="#numeros">Números</a>
+    <a href="#investir">A Rodada</a>
+  </nav>
+  <a href="#investir" class="btn btn-primary" data-magnetic>Quero Investir</a>
+</header>
+
+<!-- HERO -->
+<section class="hero snap-sec" id="top">
+  <div class="hero-bg" data-parallax="0.18"></div>
+  <div class="hero-stripes" data-parallax="0.06"></div>
+  <div class="wrap">
+    <div class="hero-flag reveal in"><span class="pulse"></span>Rodada privada · Unidade Sparta Gleba · Vagas limitadas</div>
+    <h1 class="reveal in">
+      <span class="word"><span>Não</span></span> <span class="word"><span>estamos</span></span> <span class="word"><span>construindo</span></span> <span class="word"><span>academias.</span></span><br>
+      <span class="out">Estamos construindo</span> <span class="shimmer uline">uma marca.</span>
+    </h1>
+    <p class="hero-sub reveal in d1">A <b>Sparta</b> é a 1ª <b>MegaGym do Brasil</b> — um ecossistema de performance, saúde e lifestyle com <b>múltiplas receitas</b>. E você pode entrar agora, no melhor ponto da curva.</p>
+    <p class="hero-micro reveal in d2">Rodada privada via contrato de mútuo para <b style="color:var(--yellow)">finalizar e lançar a unidade Sparta Gleba</b>, em Londrina. O modelo já está provado e faturando na unidade de Cambé — agora é terminar a obra e abrir as portas.</p>
+    <div class="hero-cta reveal in d3">
+      <div class="ticket-q" data-wa>
+        <button class="btn btn-primary tq-trigger" data-magnetic>Tenho interesse em investir
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="tq-bands">
+          <button class="tq-band" data-band="R$50k–100k">R$50k–100k</button>
+          <button class="tq-band" data-band="R$100k–300k">R$100k–300k</button>
+          <button class="tq-band" data-band="R$300k+">R$300k+</button>
+        </div>
+        <div class="tq-hint">Escolha a faixa de aporte — abrimos o WhatsApp com tudo pronto.</div>
+      </div>
+      <a href="#tese" class="btn btn-ghost">Conhecer a tese</a>
+    </div>
+    <div class="hero-note reveal in d4">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke="var(--yellow)" stroke-width="1.6"/><path d="M9 12l2 2 4-4" stroke="var(--yellow)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Modelo validado e faturando em Cambé — a Gleba é a réplica, já erguida e na reta final.
+    </div>
+  </div>
+  <div class="scroll-hint">Role para descer<i></i></div>
+</section>
+
+<!-- STAT BAR -->
+<div class="statbar">
+  <div class="wrap">
+    <div class="stat reveal"><div class="num"><span data-count="10" data-prefix="+R$" data-suffix="M">+R$10M</span></div><div class="lab">Faturamento projetado 2026</div></div>
+    <div class="stat reveal d1"><div class="num"><span data-count="9">9</span></div><div class="lab">Frentes de receita no ecossistema</div></div>
+    <div class="stat reveal d2"><div class="num"><span data-count="2">2</span></div><div class="lab">Unidades: Cambé operando + Gleba na reta final</div></div>
+    <div class="stat reveal d3"><div class="num"><span data-count="3">3</span></div><div class="lab">Cidades no plano de expansão</div></div>
+  </div>
+</div>
+
+<!-- TESE -->
+<section class="sec thesis snap-sec" id="tese">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">A oportunidade</span>
+      <h2>O mercado fitness virou commodity.<br><span class="yellow">A Sparta virou movimento.</span></h2>
+      <p>Academia tradicional aluga máquina, compete por preço e perde o aluno em 3 meses. A Sparta construiu o oposto: uma marca de lifestyle com comunidade, recorrência e várias fontes de receita por cliente. É aí que mora o retorno.</p>
+    </div>
+    <div class="cols2">
+      <div class="card bad reveal tilt">
+        <h3>Academia tradicional</h3>
+        <ul>
+          <li>Vende treino e aluga máquina</li>
+          <li>Compete por preço, margem comprimida</li>
+          <li>Receita única: a mensalidade</li>
+          <li>Churn alto, aluno some em semanas</li>
+          <li>Sem marca, sem comunidade, sem barreira</li>
+        </ul>
+      </div>
+      <div class="card good reveal d1 tilt">
+        <h3>O modelo Sparta</h3>
+        <ul>
+          <li>Vende experiência de atleta de alto rendimento</li>
+          <li>Ecossistema com 9 frentes de receita por aluno</li>
+          <li>Up-sell e cross-sell embutidos na jornada</li>
+          <li>Retenção pela metodologia e pertencimento</li>
+          <li>Marca lifestyle forte, com fãs — não clientes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUE DIFERENTE -->
+<section class="sec" id="modelo">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="eyebrow">Por que é diferente</span>
+      <h2 style="font-size:clamp(1.9rem,4.4vw,3.2rem);margin-top:16px">Hoje entregamos experiência de atleta de elite para pessoas comuns.</h2>
+      <ul class="feat-list">
+        <li><span class="ic"><svg class="svg-ico-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span class="t"><b>Metodologia própria</b><span>Autoliberação miofascial, mobilidade e ativação neuromuscular — resultado real, não achismo.</span></span></li>
+        <li><span class="ic"><svg class="svg-ico-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg></span><span class="t"><b>Tudo incluso na mensalidade</b><span>Nutricionista, recovery e fisioterapia inclusos — alavanca de up-sell e cross-sell.</span></span></li>
+        <li><span class="ic"><svg class="svg-ico-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="t"><b>Ambiente 24h de alta performance</b><span>Projetado para o aluno passar mais tempo dentro — mais consumo, mais vínculo, menos churn.</span></span></li>
+        <li><span class="ic"><svg class="svg-ico-sm" viewBox="0 0 24 24"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg></span><span class="t"><b>Marca própria</b><span>Vestuário, energético e suplemento (em lançamento) — margem que academia nenhuma tem.</span></span></li>
+      </ul>
+    </div>
+    <div class="visual-card reveal d1 tilt">
+      <div class="big">24h<small>OPERAÇÃO ININTERRUPTA</small></div>
+      <div class="badge-row">
+        <span class="badge">Ecossistema fitness</span><span class="badge">Comunidade forte</span>
+        <span class="badge">Múltiplas receitas</span><span class="badge">Recorrência</span>
+        <span class="badge">Marca lifestyle</span><span class="badge">Experiência completa</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARALLAX DIVIDER 1 -->
+<div class="pdiv">
+  <div class="pbg" data-parallax-bg style="background-image:url('assets/deck-7-07.png')"></div>
+  <div class="pcap reveal">
+    <h3>Não é uma academia. <span class="yellow">É um centro de performance.</span></h3>
+    <p>Estrutura de padrão internacional, pensada para reter e para vender.</p>
+  </div>
+</div>
+
+<!-- ECOSSISTEMA -->
+<section class="sec thesis" id="ecossistema">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">O ecossistema</span>
+      <h2>9 fontes de receita. <span class="yellow">Um só cliente.</span></h2>
+      <p>Cada aluno entra por uma porta e consome por nove. É isso que transforma uma academia em uma máquina de receita recorrente — e o investimento em retorno composto.</p>
+    </div>
+    <div class="eco-grid">
+      <div class="eco reveal tilt"><div class="ico"><svg class="svg-ico" viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-5h6v5"/></svg></div><h3>Academias</h3><p>Unidades 24h, núcleo do ecossistema e da recorrência.</p></div>
+      <div class="eco reveal d1 tilt"><div class="ico"><svg class="svg-ico" viewBox="0 0 24 24"><path d="M10.5 3.5a5 5 0 0 1 7 7l-7 7a5 5 0 0 1-7-7z"/><path d="M7 7l10 10"/></svg></div><h3>Suplementos</h3><p>Marca própria em lançamento — margem alta e fidelização.</p></div>
+      <div class="eco reveal d2 tilt"><div class="ico"><svg class="svg-ico" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Energético</h3><p>Bebida de marca própria, consumo diário dentro de casa.</p></div>
+      <div class="eco reveal tilt"><div class="ico"><svg class="svg-ico" viewBox="0 0 24 24"><path d="M4 8l4-4 2 2h4l2-2 4 4-3 3v9H7v-9z"/></svg></div><h3>Vestuário</h3><p>Linha lifestyle própria — o aluno vira mídia ambulante.</p></div>
+      <div class="eco reveal d1 tilt"><div class="ico"><svg class="svg-ico" viewBox="0 0 24 24"><path d="M4 20s.5-7 7-11c4-2.5 9-2 9-2s.5 5-2 9c-4 7-11 7-11 7z"/><path d="M4 20c4-4 8-6 12-7"/></svg></div><h3>Nutrição</h3><p>Acompanhamento que vira upsell e melhora retenção.</p></div>
+      <div class="eco reveal d2 tilt"><div class="ico"><svg class="svg-ico" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg></div><h3>Recovery</h3><p>Recuperação de atleta de elite para o público geral.</p></div>
+      <div class="eco reveal tilt"><div class="ico"><svg class="svg-ico" viewBox="0 0 24 24"><path d="M12 21C7 17 3 13.5 3 9a4 4 0 0 1 7-2.6A4 4 0 0 1 21 9c0 4.5-4 8-9 12z"/><path d="M6 12h2.5l1.5-3 2 5 1.5-2H18"/></svg></div><h3>Fisioterapia</h3><p>Cuidado incluso que reduz churn e gera receita.</p></div>
+      <div class="eco reveal d1 tilt"><div class="ico"><svg class="svg-ico" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></div><h3>E-commerce</h3><p>Loja online escalando a marca para fora das quatro paredes.</p></div>
+      <div class="eco reveal d2 tilt"><div class="ico"><svg class="svg-ico" viewBox="0 0 24 24"><path d="M12 2c2 4 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 2-4 .5 1 1 1.5 2 2 0-3-1-5 1-7z"/></svg></div><h3>Lifestyle</h3><p>Comunidade e cultura que transformam clientes em fãs.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTRUTURA INTERNACIONAL -->
+<section class="sec" id="estrutura">
+  <div class="wrap split">
+    <div class="visual-card reveal tilt" style="order:2">
+      <span class="eyebrow">Padrão mundial</span>
+      <div class="big" style="font-size:clamp(2.2rem,5vw,3.4rem);margin-top:18px">NEWTECH<small>EQUIPAMENTOS IMPORTADOS</small></div>
+      <div class="badge-row">
+        <span class="badge">Patrocinadora do Mr. Olympia</span><span class="badge">Referência em biomecânica</span>
+        <span class="badge">Usada por atletas de elite</span><span class="badge">Experiência premium</span>
+      </div>
+    </div>
+    <div class="reveal d1">
+      <span class="eyebrow">Estrutura de nível internacional</span>
+      <h2 style="font-size:clamp(1.9rem,4.4vw,3.2rem);margin-top:16px">A mesma tecnologia do palco mais alto do fisiculturismo mundial — em Londrina.</h2>
+      <p class="lead" style="margin-top:22px;color:var(--muted)">Equipamentos importados Newtech, referência mundial em biomecânica e marca patrocinadora do Mr. Olympia. Não é uma academia premium — é um centro de performance de padrão internacional, com barreira de entrada que o concorrente local não consegue copiar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF MARQUEE -->
+<section class="proof" aria-label="Operação real">
+  <div class="proof-track">
+    <img src="assets/deck-hero-01.png" alt="Sparta" /><img src="assets/deck-6-06.png" alt="Sparta" /><img src="assets/deck-7-07.png" alt="Sparta" /><img src="assets/deck-8-08.png" alt="Sparta" /><img src="assets/deck-9-09.png" alt="Sparta" /><img src="assets/deck-11-11.png" alt="Sparta" />
+    <img src="assets/deck-hero-01.png" alt="Sparta" /><img src="assets/deck-6-06.png" alt="Sparta" /><img src="assets/deck-7-07.png" alt="Sparta" /><img src="assets/deck-8-08.png" alt="Sparta" /><img src="assets/deck-9-09.png" alt="Sparta" /><img src="assets/deck-11-11.png" alt="Sparta" />
+  </div>
+</section>
+
+<!-- GLEBA SPOTLIGHT -->
+<section class="sec spot snap-sec" id="gleba">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">A unidade desta rodada</span>
+      <h2>Sparta Gleba. <span class="yellow">A obra que o seu aporte finaliza.</span></h2>
+    </div>
+    <div class="spot-grid">
+      <div class="spot-img reveal" style="background-image:url('assets/deck-8-08.png')">
+        <span class="tagpin">Londrina · Reta final</span>
+      </div>
+      <div class="reveal d1">
+        <p class="lead" style="color:var(--muted)">A estrutura já está erguida. O capital desta rodada entra para concluir a obra, montar a estrutura Newtech e abrir as portas — replicando o modelo que já fatura em Cambé.</p>
+        <div class="progress-wrap reveal">
+          <div class="pl"><span>Conclusão da obra</span><span data-progress-label>__%</span></div>
+          <div class="pbar"><i data-progress="75"></i></div>
+        </div>
+        <ul class="spot-list">
+          <li><svg class="svg-ico-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg> Ponto estratégico na Gleba, Londrina</li>
+          <li><svg class="svg-ico-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg> Modelo idêntico ao validado em Cambé</li>
+          <li><svg class="svg-ico-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg> Capital com destino único e gestão à vista</li>
+        </ul>
+        <div class="ticket-q" data-wa style="margin-top:26px">
+          <button class="btn btn-primary tq-trigger" data-magnetic>Quero finalizar essa unidade</button>
+          <div class="tq-bands">
+            <button class="tq-band" data-band="R$50k–100k">R$50k–100k</button>
+            <button class="tq-band" data-band="R$100k–300k">R$100k–300k</button>
+            <button class="tq-band" data-band="R$300k+">R$300k+</button>
+          </div>
+          <div class="tq-hint">Escolha a faixa de aporte para falar com o time fundador.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAÇÃO -->
+<section class="sec traction" id="tracao">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Tração & Expansão</span>
+      <h2>O modelo já está provado. <span class="yellow">Falta acender a Gleba.</span></h2>
+      <p>O risco de validação já passou: a unidade de Cambé opera e fatura, mostrando que o modelo funciona. Esta rodada é cirúrgica — o capital entra para <strong style="color:var(--white)">finalizar e abrir a Sparta Gleba</strong>, a unidade desta oportunidade.</p>
+    </div>
+    <div class="units">
+      <div class="unit reveal tilt"><span class="st live">Operando</span><h3>Sparta Cambé</h3><p>Unidade faturando — a prova viva de que o modelo funciona.</p></div>
+      <div class="unit focus reveal d1 tilt"><span class="st soon">Reta final · esta rodada</span><h3>Sparta Gleba</h3><p>Londrina. Obra erguida, na finalização — o capital desta rodada termina e abre as portas.</p></div>
+      <div class="unit reveal d2 tilt"><span class="st soon">Em negociação</span><h3>Londrina</h3><p>Novos pontos da cidade em negociação.</p></div>
+      <div class="unit reveal d3 tilt"><span class="st plan">Expansão</span><h3>Maringá & Curitiba</h3><p>Expansão regional já no radar.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<section class="sec numbers" id="numeros">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">A oportunidade em números</span>
+      <h2>Crescimento acelerado, <span class="yellow">receita múltipla.</span></h2>
+    </div>
+    <div class="num-grid">
+      <div class="nbox hl reveal tilt"><div class="v"><span data-count="10" data-prefix="+R$" data-suffix="M">+R$10M</span></div><div class="l">Faturamento projetado em 2026</div><div class="s">Crescimento acelerado da marca e da operação.</div></div>
+      <div class="nbox reveal d1 tilt"><div class="v"><span data-count="9">9</span>×</div><div class="l">Frentes de receita por aluno</div><div class="s">Recorrência e ticket médio que academia tradicional não alcança.</div></div>
+      <div class="nbox reveal d2 tilt"><div class="v"><span data-count="5">5</span></div><div class="l">Praças no radar de expansão</div><div class="s">Cambé, Gleba, novos pontos de Londrina, Maringá e Curitiba.</div></div>
+    </div>
+    <p style="color:var(--muted);font-size:.9rem;margin-top:26px;max-width:720px" class="reveal">Tabela de rentabilidade completa disponível para investidores qualificados em <a href="https://invista.spartaacademia.com.br" class="yellow" target="_blank" rel="noopener" style="text-decoration:underline">invista.spartaacademia.com.br</a>.</p>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote">
+  <div class="wrap">
+    <blockquote class="reveal">A disciplina encontra <span class="yellow">o impossível.</span> Não vendemos treino — <span class="yellow">entregamos legado.</span></blockquote>
+    <cite class="reveal d1">Essência Sparta · A 1ª MegaGym do Brasil</cite>
+  </div>
+</div>
+
+<!-- RODADA -->
+<section class="sec invest snap-sec" id="investir">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">A Rodada</span>
+      <h2>Rodada privada de expansão.</h2>
+      <p>Captação estruturada via contrato de mútuo, com regras claras, gestão à vista e foco total em retorno. Jogamos o jogo na luz do sol — esse é um dos nossos princípios inegociáveis.</p>
+    </div>
+    <div class="deal reveal">
+      <div class="deal-left">
+        <h3 class="yellow">Estrutura do investimento</h3>
+        <p style="color:var(--muted)">Modelo desenhado para dar segurança ao investidor e velocidade à finalização da Gleba.</p>
+        <ul class="terms">
+          <li><span>Instrumento</span><span>Contrato de Mútuo</span></li>
+          <li><span>Destino do capital</span><span>Finalizar e abrir a Sparta Gleba</span></li>
+          <li><span>Rentabilidade</span><span class="fill">Ver tabela ›</span></li>
+          <li><span>Ticket de entrada</span><span class="fill">A partir de R$50k</span></li>
+          <li><span>Prazo &amp; garantias</span><span class="fill">A alinhar</span></li>
+          <li><span>Transparência</span><span>Gestão à vista</span></li>
+        </ul>
+      </div>
+      <div class="deal-right">
+        <span class="eyebrow">Vagas limitadas</span>
+        <h3>Vamos conversar agora.</h3>
+        <p>A obra da Gleba está na reta final e as vagas desta rodada são limitadas. Escolha sua faixa de aporte e fale direto com o time fundador.</p>
+        <a class="tq-trigger btn" data-magnetic href="https://wa.me/5543996316172?text=Ol%C3%A1!%20Tenho%20interesse%20na%20rodada%20de%20investimento%20da%20Sparta%20(unidade%20Gleba%2C%20em%20Londrina).%20Quero%20receber%20a%20tabela%20de%20rentabilidade%20e%20as%20condi%C3%A7%C3%B5es." target="_blank" rel="noopener">Entrar na rodada
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALMA -->
+<section class="sec soul" id="cultura">
+  <div class="ghost">SPARTA</div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Por que confiar no time</span>
+      <h2>Não é só negócio. <span class="yellow">É cultura.</span></h2>
+      <p>Investir é apostar em pessoas. A Sparta é movida por princípios inegociáveis — e é isso que sustenta a execução por trás dos números.</p>
+    </div>
+    <div class="vals">
+      <div class="val reveal"><div class="n">01</div><h3>Braço nunca curto</h3><p>Comprometimento total. Missão dada é missão cumprida.</p></div>
+      <div class="val reveal d1"><div class="n">02</div><h3>Jogo na luz do sol</h3><p>Transparência e gestão à vista. Todos sabem os números.</p></div>
+      <div class="val reveal d2"><div class="n">03</div><h3>Foco no resultado</h3><p>Vivemos de impacto, não de PowerPoint. Entregamos o que promete. E mais.</p></div>
+      <div class="val reveal"><div class="n">04</div><h3>Alto padrão ou nem começa</h3><p>Régua exigente porque o sonho é gigante. Nível mundial em tudo.</p></div>
+      <div class="val reveal d1"><div class="n">05</div><h3>Tropa de elite</h3><p>Dream team, faixa preta, meritocracia real. Os fora da curva.</p></div>
+      <div class="val reveal d2"><div class="n">06</div><h3>Vendemos a verdade</h3><p>Prometemos só o que entregamos. Negócio limpo, sem ilusão.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq" style="background:#0d0d0c">
+  <div class="wrap" style="max-width:880px">
+    <div class="sec-head reveal" style="margin-bottom:36px">
+      <span class="eyebrow">Para o investidor</span>
+      <h2>Perguntas diretas, <span class="yellow">respostas diretas.</span></h2>
+    </div>
+    <div class="reveal">
+      <div class="faq-item"><button class="faq-q">Como é estruturado o investimento?</button><div class="faq-a"><p>Via contrato de mútuo — um instrumento claro e formal. O capital é direcionado à finalização e abertura da unidade Sparta Gleba. Condições de rentabilidade, prazo e garantias são apresentadas na conversa com o time fundador, junto da tabela de rentabilidade completa.</p></div></div>
+      <div class="faq-item"><button class="faq-q">O negócio já está validado ou é projeto?</button><div class="faq-a"><p>Validado. A unidade de Cambé já opera e fatura, com a metodologia e o modelo de ecossistema funcionando na prática. A Sparta Gleba é a réplica desse modelo já validado — a obra está erguida e na reta final. O risco de "será que funciona?" já ficou para trás.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Para onde vai exatamente o capital?</button><div class="faq-a"><p>Direto para finalizar e abrir a unidade Sparta Gleba, em Londrina: conclusão da obra, montagem da estrutura de padrão internacional (equipamentos Newtech) e lançamento. É uma rodada cirúrgica, com destino definido e gestão à vista — um dos nossos princípios é jogar o jogo na luz do sol.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Qual o diferencial defensável da Sparta?</button><div class="faq-a"><p>Marca lifestyle com comunidade real, metodologia própria, estrutura de nível internacional e nove frentes de receita por aluno. Isso cria retenção, ticket médio alto e uma barreira que a academia tradicional da região não consegue copiar.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Qual o ticket mínimo para participar?</button><div class="faq-a"><p>A rodada trabalha com faixas de aporte a partir de R$50 mil. Ao escolher sua faixa, você fala direto com o time fundador e recebe a tabela de rentabilidade e as condições completas para o seu perfil.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <div class="wrap">
+    <span class="eyebrow reveal" style="justify-content:center;display:flex">A missão é sua</span>
+    <h2 class="reveal d1">Entre na rodada<br>antes que ela <span class="yellow">feche.</span></h2>
+    <p class="reveal d2">Essa é uma puta oportunidade de entrar cedo na 1ª MegaGym do Brasil e finalizar a unidade Gleba. Vagas limitadas. Fale com o time fundador agora.</p>
+    <div class="reveal d3" style="display:flex;justify-content:center">
+      <div class="ticket-q" data-wa>
+        <button class="btn btn-primary tq-trigger" data-magnetic style="font-size:1rem;padding:16px 30px">Quero investir na Sparta
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="tq-bands" style="justify-content:center">
+          <button class="tq-band" data-band="R$50k–100k">R$50k–100k</button>
+          <button class="tq-band" data-band="R$100k–300k">R$100k–300k</button>
+          <button class="tq-band" data-band="R$300k+">R$300k+</button>
+        </div>
+        <div class="tq-hint" style="text-align:center">ou ligue: (43) 99631-6172</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img src="assets/sparta-wordmark.png" alt="Sparta" class="logo" />
+        <p>A 1ª MegaGym do Brasil. Centro de performance, bem-estar, saúde e lifestyle. A disciplina encontra o impossível.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Sparta</h4>
+        <a href="https://spartaacademia.com.br" target="_blank" rel="noopener">Site oficial</a>
+        <a href="https://gleba.spartaacademia.com.br" target="_blank" rel="noopener">Sparta Gleba</a>
+        <a href="https://spartaloja.com.br" target="_blank" rel="noopener">Loja / E-commerce</a>
+        <a href="https://invista.spartaacademia.com.br" target="_blank" rel="noopener">Tabela de rentabilidade</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contato</h4>
+        <a href="https://wa.me/5543996316172" target="_blank" rel="noopener">WhatsApp · (43) 99631-6172</a>
+        <a href="https://instagram.com/spartaacademia" target="_blank" rel="noopener">@spartaacademia</a>
+        <a href="https://instagram.com/sprt.loja" target="_blank" rel="noopener">@sprt.loja</a>
+        <a href="#investir">Entrar na rodada</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Sparta — A 1ª MegaGym do Brasil. Todos os direitos reservados.</p>
+      <p>#PERFORMANCE · #DISCIPLINA · #EXPANSÃO · #LIFESTYLE · #LEGADO</p>
+    </div>
+    <p class="disclaim">Este material tem caráter informativo e não constitui oferta pública de valores mobiliários nem garantia de rentabilidade. Investimentos via contrato de mútuo envolvem riscos. Condições, prazos, garantias e rentabilidade são apresentados individualmente a investidores no processo de diligência. Rentabilidade passada ou projetada não representa garantia de resultados futuros.</p>
+  </div>
+</footer>
+
+<!-- FLOAT + STICKY CTA -->
+<a href="#investir" class="btn btn-primary float-cta" id="floatCta" data-magnetic>Entrar na rodada</a>
+<div class="sticky-cta"><a href="#investir" class="btn btn-primary">Quero investir · Ver faixas</a></div>
+
+<!-- EXIT INTENT -->
+<div class="exit-overlay" id="exit">
+  <div class="exit-modal">
+    <button class="x" id="exitClose" aria-label="Fechar">×</button>
+    <span class="eyebrow">Antes de sair</span>
+    <h3>A Gleba está na <span class="yellow">reta final.</span></h3>
+    <p>Vagas limitadas e obra quase pronta. Leva 30 segundos para falar com o time fundador e garantir sua análise da rodada.</p>
+    <div class="ticket-q" data-wa>
+      <button class="btn btn-primary tq-trigger">Falar com o time agora</button>
+      <div class="tq-bands">
+        <button class="tq-band" data-band="R$50k–100k">R$50k–100k</button>
+        <button class="tq-band" data-band="R$100k–300k">R$100k–300k</button>
+        <button class="tq-band" data-band="R$300k+">R$300k+</button>
+      </div>
+      <div class="tq-hint">Escolha a faixa — abrimos o WhatsApp com tudo pronto.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var desktop = matchMedia('(min-width:881px) and (hover:hover)').matches;
+
+  /* loader */
+  function killLoader(){var l=document.getElementById('loader');if(l){l.classList.add('done');}document.body.classList.add('loaded');}
+  window.addEventListener('load',function(){setTimeout(killLoader,900);});
+  setTimeout(killLoader,2600); // hard fallback
+
+  /* nav + progress */
+  var nav=document.getElementById('nav'),prog=document.getElementById('progress'),floatCta=document.getElementById('floatCta');
+  function onScroll(){
+    var y=scrollY;
+    nav.classList.toggle('scrolled',y>40);
+    var h=document.documentElement.scrollHeight-innerHeight;
+    prog.style.width=(h>0?(y/h*100):0)+'%';
+    if(floatCta) floatCta.classList.toggle('show', y>700);
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* cursor glow + parallax (desktop only) */
+  if(desktop && !reduce){
+    var glow=document.getElementById('glow');
+    addEventListener('mousemove',function(e){
+      glow.style.opacity=1;glow.style.transform='translate('+e.clientX+'px,'+e.clientY+'px) translate(-50%,-50%)';
+      // hero layer parallax
+      var cx=(e.clientX/innerWidth-.5),cy=(e.clientY/innerHeight-.5);
+      document.querySelectorAll('[data-parallax]').forEach(function(el){
+        var d=parseFloat(el.getAttribute('data-parallax'));
+        el.style.transform='translate('+(cx*d*40)+'px,'+(cy*d*40)+'px)'+(el.classList.contains('hero-bg')?' scale(1.12)':'');
+      });
+    });
+  }
+  /* scroll parallax for dividers */
+  if(!reduce){
+    var pbgs=document.querySelectorAll('[data-parallax-bg]');
+    addEventListener('scroll',function(){
+      pbgs.forEach(function(el){
+        var r=el.parentElement.getBoundingClientRect();
+        var off=(r.top+r.height/2-innerHeight/2)*-0.12;
+        el.style.transform='translateY('+off+'px)';
+      });
+    },{passive:true});
+  }
+
+  /* 3D tilt */
+  if(desktop && !reduce){
+    document.querySelectorAll('.tilt').forEach(function(c){
+      c.addEventListener('mousemove',function(e){
+        var r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+        c.style.transform='perspective(900px) rotateX('+(-py*5)+'deg) rotateY('+(px*6)+'deg) translateY(-4px)';
+      });
+      c.addEventListener('mouseleave',function(){c.style.transform='';});
+    });
+  }
+
+  /* magnetic buttons */
+  if(desktop && !reduce){
+    document.querySelectorAll('[data-magnetic]').forEach(function(b){
+      b.addEventListener('mousemove',function(e){
+        var r=b.getBoundingClientRect();
+        b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.22)+'px,'+((e.clientY-r.top-r.height/2)*.32)+'px)';
+      });
+      b.addEventListener('mouseleave',function(){b.style.transform='';});
+    });
+  }
+
+  /* reveal */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
+  document.querySelectorAll('.reveal:not(.in)').forEach(function(el){io.observe(el);});
+
+  /* counters */
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;var el=e.target,end=+el.dataset.count,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'',i=0,steps=40;
+    var t=setInterval(function(){i++;var v=Math.round(end*(1-Math.pow(1-i/steps,3)));el.textContent=pre+v+suf;if(i>=steps){el.textContent=pre+end+suf;clearInterval(t);}},22);
+    cio.unobserve(el);
+  });},{threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(function(el){cio.observe(el);});
+
+  /* progress bar (obra) */
+  var pio=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;var bar=e.target,val=+bar.dataset.progress;
+    bar.style.width=val+'%';
+    var lab=document.querySelector('[data-progress-label]');if(lab){var i=0;var t=setInterval(function(){i+=2;if(i>=val){i=val;clearInterval(t);}lab.textContent=i+'%';},22);}
+    pio.unobserve(bar);
+  });},{threshold:.5});
+  document.querySelectorAll('[data-progress]').forEach(function(el){pio.observe(el);});
+
+  /* faq */
+  document.querySelectorAll('.faq-q').forEach(function(q){q.addEventListener('click',function(){
+    var item=q.parentElement,a=q.nextElementSibling,open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(o){o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null;});
+    if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+  });});
+
+  /* WhatsApp ticket qualifier */
+  var WA='https://wa.me/5543996316172?text=';
+  function waMsg(band){return WA+encodeURIComponent('Olá! Tenho interesse na rodada de investimento da Sparta (unidade Gleba, em Londrina). Faixa de aporte: '+band+'. Quero receber a tabela de rentabilidade e as condições.');}
+  document.querySelectorAll('.ticket-q[data-wa]').forEach(function(q){
+    var trig=q.querySelector('.tq-trigger');
+    trig.addEventListener('click',function(){q.classList.toggle('open');});
+    q.querySelectorAll('.tq-band').forEach(function(b){
+      b.addEventListener('click',function(){window.open(waMsg(b.getAttribute('data-band')),'_blank');});
+    });
+  });
+
+  /* exit intent (desktop, once per session) */
+  if(desktop){
+    var exit=document.getElementById('exit');
+    function showExit(){if(sessionStorage.getItem('spartaExit'))return;sessionStorage.setItem('spartaExit','1');exit.classList.add('show');}
+    document.addEventListener('mouseout',function(e){if(e.clientY<=0&&!e.relatedTarget)showExit();});
+    document.getElementById('exitClose').addEventListener('click',function(){exit.classList.remove('show');});
+    exit.addEventListener('click',function(e){if(e.target===exit)exit.classList.remove('show');});
+  }
+
+  /* enable gentle scroll-snap after load (desktop) */
+  if(desktop && !reduce){setTimeout(function(){document.documentElement.classList.add('snap');},1500);}
+})();
+</script>
+</body>
+</html>
