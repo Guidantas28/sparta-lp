@@ -399,23 +399,7 @@
       </div>
     </section>
 
-    <!-- 9 · A RODADA -->
-    <section class="slide dark">
-      <div class="ghost">03</div>
-      <div class="inner">
-        <span class="eyebrow kicker rv">A Rodada</span>
-        <h2 class="rv">Rodada privada <span class="yellow">de expansão.</span></h2>
-        <p class="lead rv">Captação estruturada via contrato de mútuo, com regras claras, gestão à vista e foco total em retorno. Jogamos o jogo na luz do sol — esse é um dos nossos princípios inegociáveis.</p>
-        <ul class="terms rv">
-          <li><span>Instrumento</span><span>Contrato de Mútuo</span></li>
-          <li><span>Destino do capital</span><span>Finalizar e abrir a Sparta Gleba</span></li>
-          <li><span>Ticket de entrada</span><span class="fill">A partir de R$50k</span></li>
-          <li><span>Transparência</span><span class="fill">Gestão à vista</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 10 · CULTURA -->
+    <!-- CULTURA -->
     <section class="slide dark">
       <div class="ghost">SPARTA</div>
       <div class="inner">
@@ -599,10 +583,17 @@
   }, {passive:true});
 
   function toggleFs(){
-    if (!document.fullscreenElement) { (document.documentElement.requestFullscreen||function(){})( ); }
-    else { document.exitFullscreen && document.exitFullscreen(); }
+    var el = document.documentElement;
+    var fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+    if (!fsEl){
+      var req = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+      if (req) { try { var p = req.call(el); if (p && p.catch) p.catch(function(){}); } catch(e){} }
+    } else {
+      var exit = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+      if (exit) { try { exit.call(document); } catch(e){} }
+    }
   }
-  fsBtn.addEventListener('click', toggleFs);
+  fsBtn.addEventListener('click', function(e){ e.stopPropagation(); toggleFs(); });
 
   // ---- cold open ----
   var introEl = document.getElementById('intro');
