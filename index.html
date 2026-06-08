@@ -12,6 +12,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;800;900&family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1376880180311298'); fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1376880180311298&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
 <style>
   :root{
     --black:#0a0a0a;--ink:#070707;--panel:#111110;--panel-2:#161613;
@@ -697,13 +709,51 @@
   </div>
 </div>
 
-<!-- AGENDAMENTO (Google Calendar) -->
+<!-- AGENDAMENTO (funil Lead -> Schedule, Cal.com self-host) -->
+<style>
+  .spt-step{display:none}
+  .spt-step.active{display:block}
+  .spt-lead{padding:30px 26px 26px}
+  .spt-lead h3{font-family:'League Spartan',sans-serif;font-weight:900;text-transform:uppercase;font-size:1.7rem;line-height:.95;margin-bottom:8px}
+  .spt-lead .eyebrow{margin-bottom:14px}
+  .spt-lead p{color:var(--muted);margin-bottom:22px;font-size:.95rem}
+  .spt-field{margin-bottom:14px}
+  .spt-field label{display:block;font-family:'League Spartan',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:.7rem;color:var(--muted);margin-bottom:6px}
+  .spt-field input{width:100%;background:#0b0b0a;border:1px solid var(--line);color:var(--white);font-family:'Exo',sans-serif;font-size:1rem;padding:13px 14px;outline:none;transition:border-color .2s}
+  .spt-field input:focus{border-color:var(--yellow)}
+  .spt-lead .btn-primary{width:100%;justify-content:center;margin-top:8px;font-size:1rem;padding:15px}
+  .spt-lead .spt-fine{margin-top:14px;font-size:.74rem;color:var(--muted);text-align:center}
+  #my-cal-inline-investimento-sparta-academia{width:100%;height:640px;overflow:auto;background:#fff}
+  @media(max-width:880px){#my-cal-inline-investimento-sparta-academia{height:80vh}.spt-lead{padding:22px 16px}}
+</style>
 <div class="cal-overlay" id="cal">
   <div class="cal-modal">
     <button class="x" id="calClose" aria-label="Fechar">×</button>
-    <iframe id="calFrame" title="Agendar uma conversa com o time Sparta" loading="lazy"></iframe>
+    <!-- Passo 1: captura do lead -->
+    <div class="spt-step active spt-lead" id="sptStep1">
+      <span class="eyebrow">Rodada privada</span>
+      <h3>Fale com o time fundador.</h3>
+      <p>Deixe seus dados e escolha o melhor horário para uma conversa por vídeo sobre a rodada da Sparta Gleba.</p>
+      <form id="sptLeadForm" novalidate>
+        <div class="spt-field"><label>Nome</label><input name="name" autocomplete="name" required></div>
+        <div class="spt-field"><label>E-mail</label><input name="email" type="email" autocomplete="email" required></div>
+        <div class="spt-field"><label>WhatsApp</label><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required></div>
+        <button class="btn btn-primary" type="submit">Escolher horário
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="spt-fine">Seus dados são usados apenas para o contato sobre a rodada.</div>
+      </form>
+    </div>
+    <!-- Passo 2: agendamento (Cal.com) -->
+    <div class="spt-step" id="sptStep2">
+      <div id="my-cal-inline-investimento-sparta-academia"></div>
+    </div>
   </div>
 </div>
+<!-- Cal.com embed loader -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://cal.osvertex.com/embed/embed.js", "init");
+</script>
 
 <script>
 (function(){
@@ -801,17 +851,74 @@
     if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
   });});
 
-  /* Agendamento Google — overlay popup */
-  var CAL_URL='https://calendar.google.com/calendar/appointments/schedules/AcZssZ3x3om3h1Pua7l0vnGd6_FCMP4-rOTytcUP-omR83fVeHysNYVxuvnN6KN1vU1LVbAgC3kcF-KQ?gv=true';
+  /* ===== Funil Sparta: Lead (form) -> Schedule (Cal.com) + Meta Pixel/CAPI ===== */
+  var TRACK_BACKEND='https://track.osvertex.com';
+  var CAL_NS='investimento-sparta-academia';
+  var CAL_LINK='team/sparta-academia/investimento-sparta-academia';
+
+  /* captura UTMs na 1ª visita (persiste entre páginas) */
+  (function(){var qs=new URLSearchParams(location.search);
+    ['utm_campaign','utm_term','utm_content'].forEach(function(k){if(qs.get(k))localStorage.setItem(k,qs.get(k));});})();
+  function getCookie(n){var m=document.cookie.split('; ').find(function(r){return r.indexOf(n+'=')===0;});return m?m.split('=')[1]:'';}
+  function trackingData(){
+    return fetch('https://api.ipify.org?format=json').then(function(r){return r.json();}).then(function(d){return d.ip;})
+      .catch(function(){return '';})
+      .then(function(ip){return {fbp:getCookie('_fbp'),fbc:getCookie('_fbc'),ua:navigator.userAgent,ip:ip,
+        utm_campaign:localStorage.getItem('utm_campaign')||'',utm_term:localStorage.getItem('utm_term')||'',
+        utm_content:localStorage.getItem('utm_content')||''};});
+  }
+
   var calOverlay=document.getElementById('cal');
-  var calFrame=document.getElementById('calFrame');
+  var step1=document.getElementById('sptStep1'),step2=document.getElementById('sptStep2');
+  var leadForm=document.getElementById('sptLeadForm');
+  var calInited=false;
+
+  function showStep(n){step1.classList.toggle('active',n===1);step2.classList.toggle('active',n===2);}
   function openCal(){
     var ex=document.getElementById('exit'); if(ex)ex.classList.remove('show');
-    if(!calFrame.getAttribute('src'))calFrame.setAttribute('src',CAL_URL); /* carrega o iframe só no 1º clique */
+    showStep(1);
     calOverlay.classList.add('show');
     document.body.style.overflow='hidden';
   }
   function closeCal(){calOverlay.classList.remove('show');document.body.style.overflow='';}
+
+  function mountCal(lead,td){
+    var cfg={layout:'month_view',useSlotsViewOnSmallScreen:'true',
+      name:lead.name,email:lead.email,smsReminderNumber:lead.phone,
+      fbp:td.fbp,fbc:td.fbc,ua:td.ua,ip:td.ip,
+      utm_campaign:td.utm_campaign,utm_term:td.utm_term,utm_content:td.utm_content};
+    if(!calInited){
+      Cal('init',CAL_NS,{origin:'https://cal.osvertex.com'});
+      Cal.ns[CAL_NS]('ui',{hideEventTypeDetails:false,layout:'month_view'});
+      Cal.ns[CAL_NS]('on',{action:'bookingSuccessful',callback:function(e){
+        var d=(e&&e.detail&&e.detail.data)||{};
+        var uid=(d.booking&&d.booking.uid)||d.uid||d.bookingUid||''; /* MESMO uid que o webhook usa = dedup */
+        if(window.fbq) fbq('track','Schedule',{},{eventID:uid});
+      }});
+      calInited=true;
+    }
+    Cal.ns[CAL_NS]('inline',{elementOrSelector:'#my-cal-inline-investimento-sparta-academia',config:cfg,calLink:CAL_LINK});
+  }
+
+  if(leadForm){
+    leadForm.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var els=ev.target.elements;
+      var lead={name:(els.name.value||'').trim(),email:(els.email.value||'').trim(),phone:(els.phone.value||'').trim()};
+      if(!lead.name||!lead.email||!lead.phone){return;}
+      var btn=ev.target.querySelector('button[type=submit]'); if(btn)btn.disabled=true;
+      trackingData().then(function(td){
+        var eventId='lead_'+Date.now()+'_'+Math.floor(Math.random()*1e6);
+        if(window.fbq) fbq('track','Lead',{},{eventID:eventId}); /* BROWSER (Pixel) */
+        fetch(TRACK_BACKEND+'/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(Object.assign({},lead,td,{eventId:eventId}))}).catch(function(e){console.warn('lead',e);}); /* SERVER (CAPI+Sheets) */
+        mountCal(lead,td);
+        showStep(2);
+        if(btn)btn.disabled=false;
+      });
+    });
+  }
+
   document.querySelectorAll('[data-schedule]').forEach(function(b){
     b.addEventListener('click',function(e){e.preventDefault();openCal();});
   });
