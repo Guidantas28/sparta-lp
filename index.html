@@ -319,10 +319,10 @@ fbq('init','1376880180311298'); fbq('track','PageView');
   /* agendamento (Google) */
   .cal-overlay{position:fixed;inset:0;z-index:9600;background:rgba(4,4,4,.85);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:28px;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
   .cal-overlay.show{opacity:1;visibility:visible}
-  .cal-modal{position:relative;width:100%;max-width:780px;background:linear-gradient(160deg,#16150e,#0c0c0b);border:1px solid var(--yellow);padding:16px;transform:translateY(20px) scale(.97);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+  .cal-modal{position:relative;width:100%;max-width:460px;background:linear-gradient(160deg,#16150e,#0c0c0b);border:1px solid var(--yellow);padding:16px;transform:translateY(20px) scale(.97);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
   .cal-overlay.show .cal-modal{transform:none}
   .cal-modal .x{position:absolute;top:-16px;right:-16px;width:42px;height:42px;border-radius:50%;background:var(--yellow);color:#000;border:none;font-size:1.5rem;font-weight:700;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 8px 24px rgba(0,0,0,.5)}
-  .cal-modal iframe{display:block;width:100%;height:640px;border:0;background:#fff}
+  .cal-modal iframe{display:block;width:100%;height:600px;max-height:85vh;border:0;background:#fff}
   @media(max-width:880px){.cal-overlay{padding:14px}.cal-modal{padding:8px}.cal-modal iframe{height:80vh}.cal-modal .x{top:-12px;right:-12px;width:38px;height:38px}}
 
   /* reveal */
@@ -723,7 +723,7 @@ fbq('init','1376880180311298'); fbq('track','PageView');
   .spt-field input:focus{border-color:var(--yellow)}
   .spt-lead .btn-primary{width:100%;justify-content:center;margin-top:8px;font-size:1rem;padding:15px}
   .spt-lead .spt-fine{margin-top:14px;font-size:.74rem;color:var(--muted);text-align:center}
-  #my-cal-inline-investimento-sparta-academia{width:100%;height:640px;overflow:auto;background:#fff}
+  #my-cal-inline-investimento-sparta-academia{width:100%;height:600px;max-height:85vh;overflow:auto;background:#fff}
   @media(max-width:880px){#my-cal-inline-investimento-sparta-academia{height:80vh}.spt-lead{padding:22px 16px}}
 </style>
 <div class="cal-overlay" id="cal">
@@ -884,7 +884,7 @@ fbq('init','1376880180311298'); fbq('track','PageView');
 
   function mountCal(lead,td){
     var cfg={layout:'month_view',useSlotsViewOnSmallScreen:'true',
-      name:lead.name,email:lead.email,smsReminderNumber:lead.phone,
+      name:lead.name,email:lead.email,smsReminderNumber:lead.phone,whatsapp:lead.phone,
       fbp:td.fbp,fbc:td.fbc,ua:td.ua,ip:td.ip,
       utm_campaign:td.utm_campaign,utm_term:td.utm_term,utm_content:td.utm_content};
     if(!calInited){
