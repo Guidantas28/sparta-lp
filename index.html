@@ -883,8 +883,9 @@ fbq('init','1376880180311298'); fbq('track','PageView');
   function closeCal(){calOverlay.classList.remove('show');document.body.style.overflow='';}
 
   function mountCal(lead,td){
+    var waPhone='+55'+(lead.phone||'').replace(/\D/g,'').replace(/^55/,'');
     var cfg={layout:'month_view',useSlotsViewOnSmallScreen:'true',
-      name:lead.name,email:lead.email,smsReminderNumber:lead.phone,whatsapp:lead.phone,
+      name:lead.name,email:lead.email,smsReminderNumber:waPhone,whatsapp:waPhone,
       fbp:td.fbp,fbc:td.fbc,ua:td.ua,ip:td.ip,
       utm_campaign:td.utm_campaign,utm_term:td.utm_term,utm_content:td.utm_content};
     if(!calInited){
