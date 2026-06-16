@@ -380,7 +380,7 @@ fbq('init','1376880180311298'); fbq('track','PageView');
     <p class="hero-sub reveal in d1">A <b>Sparta</b> é a 1ª <b>MegaGym do Brasil</b> — um ecossistema de performance, saúde e lifestyle com <b>múltiplas receitas</b>. E você pode entrar agora, no melhor ponto da curva.</p>
     <p class="hero-micro reveal in d2">Rodada privada via contrato de mútuo para <b style="color:var(--yellow)">finalizar e lançar a unidade Sparta Gleba</b>, em Londrina. O modelo já está provado e faturando na unidade de Cambé — agora é terminar a obra e abrir as portas.</p>
     <div class="hero-cta reveal in d3">
-      <button class="btn btn-primary" data-schedule data-magnetic>Agendar uma conversa
+      <button class="btn btn-primary" data-schedule data-magnetic>Falar com o time
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <a href="#tese" class="btn btn-ghost">Conhecer a tese</a>
@@ -679,7 +679,7 @@ fbq('init','1376880180311298'); fbq('track','PageView');
       </div>
       <div class="foot-col">
         <h4>Contato</h4>
-        <a href="#" data-schedule role="button">Agendar uma conversa</a>
+        <a href="#" data-schedule role="button">Falar com o time</a>
         <a href="tel:+5543996316172">(43) 99631-6172</a>
         <a href="https://instagram.com/spartaacademia" target="_blank" rel="noopener">@spartaacademia</a>
         <a href="https://instagram.com/sprt.loja" target="_blank" rel="noopener">@sprt.loja</a>
@@ -705,11 +705,11 @@ fbq('init','1376880180311298'); fbq('track','PageView');
     <span class="eyebrow">Antes de sair</span>
     <h3>A Gleba está na <span class="yellow">reta final.</span></h3>
     <p>Vagas limitadas e obra quase pronta. Leva 30 segundos para falar com o time fundador e garantir sua análise da rodada.</p>
-    <button class="btn btn-primary" data-schedule>Agendar com o time agora</button>
+    <button class="btn btn-primary" data-schedule>Falar com o time agora</button>
   </div>
 </div>
 
-<!-- AGENDAMENTO (funil Lead -> Schedule, Cal.com self-host) -->
+<!-- CONTATO (funil Lead -> Contact: formulário -> WhatsApp direto) -->
 <style>
   .spt-step{display:none}
   .spt-step.active{display:block}
@@ -726,8 +726,14 @@ fbq('init','1376880180311298'); fbq('track','PageView');
   .spt-field select option{background:#0b0b0a;color:var(--white)}
   .spt-lead .btn-primary{width:100%;justify-content:center;margin-top:8px;font-size:1rem;padding:15px}
   .spt-lead .spt-fine{margin-top:14px;font-size:.74rem;color:var(--muted);text-align:center}
-  #my-cal-inline-investimento-sparta-academia{width:100%;height:600px;max-height:85vh;overflow:auto;background:#fff}
-  @media(max-width:880px){#my-cal-inline-investimento-sparta-academia{height:80vh}.spt-lead{padding:22px 16px}}
+  .spt-thanks{padding:34px 26px 30px;text-align:center}
+  .spt-thanks .eyebrow{margin-bottom:12px;display:inline-block}
+  .spt-thanks h3{font-family:'League Spartan',sans-serif;font-weight:900;text-transform:uppercase;font-size:1.7rem;line-height:.95;margin-bottom:10px}
+  .spt-thanks p{color:var(--muted);margin-bottom:22px;font-size:.95rem}
+  .spt-check{width:58px;height:58px;border-radius:50%;background:var(--yellow);color:#0b0b0a;font-size:1.8rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+  .spt-wa{width:100%;justify-content:center;font-size:1.05rem;padding:16px;gap:10px}
+  .spt-thanks .spt-fine{margin-top:14px;font-size:.74rem;color:var(--muted)}
+  @media(max-width:880px){.spt-lead{padding:22px 16px}.spt-thanks{padding:24px 16px}}
 </style>
 <div class="cal-overlay" id="cal">
   <div class="cal-modal">
@@ -736,7 +742,7 @@ fbq('init','1376880180311298'); fbq('track','PageView');
     <div class="spt-step active spt-lead" id="sptStep1">
       <span class="eyebrow">Rodada privada</span>
       <h3>Fale com o time fundador.</h3>
-      <p>Deixe seus dados e escolha o melhor horário para uma conversa por vídeo sobre a rodada da Sparta Gleba.</p>
+      <p>Deixe seus dados e fale agora no WhatsApp com o time fundador sobre a rodada da Sparta Gleba.</p>
       <form id="sptLeadForm" novalidate>
         <div class="spt-field"><label>Nome</label><input name="name" autocomplete="name" required></div>
         <div class="spt-field"><label>E-mail</label><input name="email" type="email" autocomplete="email" required></div>
@@ -766,22 +772,27 @@ fbq('init','1376880180311298'); fbq('track','PageView');
           <option>Nos próximos meses</option>
           <option>Sem pressa, explorando</option>
         </select></div>
-        <button class="btn btn-primary" type="submit">Escolher horário
+        <button class="btn btn-primary" type="submit">Falar no WhatsApp
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="spt-fine">Seus dados são usados apenas para o contato sobre a rodada.</div>
       </form>
     </div>
-    <!-- Passo 2: agendamento (Cal.com) -->
-    <div class="spt-step" id="sptStep2">
-      <div id="my-cal-inline-investimento-sparta-academia"></div>
+    <!-- Passo 2: obrigado + WhatsApp -->
+    <div class="spt-step spt-thanks" id="sptStep2">
+      <div class="spt-check">✓</div>
+      <span class="eyebrow">Quase lá</span>
+      <h3>Recebemos seus dados.</h3>
+      <p>Agora fale direto com o time fundador da Sparta no WhatsApp para conversar sobre a rodada da Gleba.</p>
+      <a class="btn btn-primary spt-wa" id="sptWaBtn" href="https://wa.me/5543999798315" target="_blank" rel="noopener">
+        Falar no WhatsApp agora
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6.1.3.7 1.1 1.4 1.8 1 .8 1.7 1.1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.2.1.6-.1 1.1z"/></svg>
+      </a>
+      <div class="spt-fine">Você falará diretamente com o número oficial do time da Sparta.</div>
     </div>
   </div>
 </div>
-<!-- Cal.com embed loader -->
-<script type="text/javascript">
-  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://cal.osvertex.com/embed/embed.js", "init");
-</script>
+<!-- (Cal.com removido — após o formulário o lead vai direto pro WhatsApp) -->
 
 <script>
 (function(){
@@ -879,10 +890,9 @@ fbq('init','1376880180311298'); fbq('track','PageView');
     if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
   });});
 
-  /* ===== Funil Sparta: Lead (form) -> Schedule (Cal.com) + Meta Pixel/CAPI ===== */
+  /* ===== Funil Sparta: Lead (form) -> Contact (WhatsApp) + Meta Pixel/CAPI ===== */
   var TRACK_BACKEND='https://track.osvertex.com';
-  var CAL_NS='investimento-sparta-academia';
-  var CAL_LINK='team/sparta-academia/investimento-sparta-academia';
+  var WA_NUMBER='5543999798315'; /* +55 43 99979-8315 */
 
   /* captura UTMs na 1ª visita (persiste entre páginas) */
   (function(){var qs=new URLSearchParams(location.search);
@@ -899,7 +909,8 @@ fbq('init','1376880180311298'); fbq('track','PageView');
   var calOverlay=document.getElementById('cal');
   var step1=document.getElementById('sptStep1'),step2=document.getElementById('sptStep2');
   var leadForm=document.getElementById('sptLeadForm');
-  var calInited=false;
+  var lastLead=null,lastTd=null;       /* guarda os dados p/ o evento Contact */
+  var contactSent=false;
 
   function showStep(n){step1.classList.toggle('active',n===1);step2.classList.toggle('active',n===2);}
   function openCal(){
@@ -910,23 +921,11 @@ fbq('init','1376880180311298'); fbq('track','PageView');
   }
   function closeCal(){calOverlay.classList.remove('show');document.body.style.overflow='';}
 
-  function mountCal(lead,td){
-    var waPhone='+55'+(lead.phone||'').replace(/\D/g,'').replace(/^55/,'');
-    var cfg={layout:'month_view',useSlotsViewOnSmallScreen:'true',
-      name:lead.name,email:lead.email,smsReminderNumber:waPhone,whatsapp:waPhone,
-      fbp:td.fbp,fbc:td.fbc,ua:td.ua,ip:td.ip,
-      utm_campaign:td.utm_campaign,utm_term:td.utm_term,utm_content:td.utm_content};
-    if(!calInited){
-      Cal('init',CAL_NS,{origin:'https://cal.osvertex.com'});
-      Cal.ns[CAL_NS]('ui',{hideEventTypeDetails:false,layout:'month_view'});
-      Cal.ns[CAL_NS]('on',{action:'bookingSuccessful',callback:function(e){
-        var d=(e&&e.detail&&e.detail.data)||{};
-        var uid=(d.booking&&d.booking.uid)||d.uid||d.bookingUid||''; /* MESMO uid que o webhook usa = dedup */
-        if(window.fbq) fbq('track','Schedule',{},{eventID:uid});
-      }});
-      calInited=true;
-    }
-    Cal.ns[CAL_NS]('inline',{elementOrSelector:'#my-cal-inline-investimento-sparta-academia',config:cfg,calLink:CAL_LINK});
+  /* link do WhatsApp com mensagem pré-preenchida */
+  function waHref(lead){
+    var nome=(lead&&lead.name)?(' Aqui é '+lead.name+'.'):'';
+    var msg='Olá!'+nome+' Acabei de preencher o formulário no site e quero falar sobre a rodada de sócios-investidores da Sparta Academia (Gleba/Londrina).';
+    return 'https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg);
   }
 
   if(leadForm){
@@ -943,10 +942,28 @@ fbq('init','1376880180311298'); fbq('track','PageView');
         if(window.fbq) fbq('track','Lead',{},{eventID:eventId}); /* BROWSER (Pixel) */
         fetch(TRACK_BACKEND+'/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},
           body:JSON.stringify(Object.assign({},lead,td,{eventId:eventId}))}).catch(function(e){console.warn('lead',e);}); /* SERVER (CAPI+Sheets) */
-        mountCal(lead,td);
+        lastLead=lead; lastTd=td; contactSent=false;
+        var wa=document.getElementById('sptWaBtn'); if(wa)wa.href=waHref(lead);
         showStep(2);
         if(btn)btn.disabled=false;
       }).catch(function(e){console.warn('funil',e);if(btn)btn.disabled=false;});
+    });
+  }
+
+  /* clique no WhatsApp -> evento Contact (browser Pixel + CAPI no server = dedup) */
+  var waBtn=document.getElementById('sptWaBtn');
+  if(waBtn){
+    waBtn.addEventListener('click',function(){
+      if(waBtn.href.indexOf('wa.me')===-1) waBtn.href=waHref(lastLead);
+      if(contactSent) return; contactSent=true;
+      var eventId='contact_'+Date.now()+'_'+Math.floor(Math.random()*1e6);
+      if(window.fbq) fbq('track','Contact',{},{eventID:eventId}); /* BROWSER (Pixel) */
+      var body=JSON.stringify(Object.assign({},lastLead||{},lastTd||{},{eventId:eventId}));
+      try{
+        if(navigator.sendBeacon) navigator.sendBeacon(TRACK_BACKEND+'/api/contact',new Blob([body],{type:'application/json'}));
+        else fetch(TRACK_BACKEND+'/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:body,keepalive:true});
+      }catch(e){console.warn('contact',e);}
+      /* o link (target=_blank) abre o WhatsApp normalmente */
     });
   }
 
